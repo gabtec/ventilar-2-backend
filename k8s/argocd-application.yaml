@@ -1,0 +1,22 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ventilar-api
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/gabtec/ventilar-2-backend'
+    targetRevision: HEAD
+    path: k8s
+  destination:
+    name: ''
+    namespace: default
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true # altera quando o repo git for alterado
+      prune: true # elimina algum obj que seja eliminado no repo
