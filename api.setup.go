@@ -5,7 +5,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
-// SetupFiber - will initiate a GoFiber API
+// SetupFiber - will initiate a GoFiber API.
 func SetupFiber() *fiber.App {
 	app := fiber.New(fiber.Config{
 		AppName: "VentilAR REST API v0.0.1",

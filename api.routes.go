@@ -4,7 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// SetupRoutes is a function that exports all API route endpoints
+// SetupRoutes is a function that exports all API route endpoints.
 func SetupRoutes(app *fiber.App) {
 	api := app.Group("/api")
 

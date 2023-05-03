@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// RouteNotFoundErrorHandler - will catch 404 errors
+// RouteNotFoundErrorHandler - will catch 404 errors.
 func RouteNotFoundErrorHandler(ctx *fiber.Ctx) error {
 	// If request reaches here, it's because no route matched
 
@@ -19,7 +19,6 @@ func RouteNotFoundErrorHandler(ctx *fiber.Ctx) error {
 
 // CustomDefaultErrorHandler - will catch all other errors, and customize them.
 func CustomDefaultErrorHandler(c *fiber.Ctx, err error) error {
-
 	// TODO: filter my custom errors
 
 	// Status code defaults to 500

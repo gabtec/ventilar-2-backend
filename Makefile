@@ -46,6 +46,9 @@ lint:
 	golangci-lint run --enable-all
 # If you are using go mod, make sure to add "golangci-lint" to your go.mod file.
 
+lint-fix:
+	golangci-lint run --enable-all --fix
+
 clean:
 	go clean
 	rm -Rf ./${BUILD_FOLDER} ./coverage

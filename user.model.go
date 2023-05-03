@@ -2,7 +2,7 @@ package main
 
 import "time"
 
-// User is a representation of wards table
+// User is a representation of wards table.
 type User struct {
 	ID           uint   `json:"id"      gorm:"primaryKey"`
 	Name         string `json:"name"`

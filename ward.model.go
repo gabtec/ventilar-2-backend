@@ -2,7 +2,7 @@ package main
 
 import "time"
 
-// Ward is a representation of wards table ERROR
+// Ward is a representation of wards table ERROR.
 type Ward struct {
 	ID        uint   `json:"id" gorm:"primaryKey"`
 	Name      string `json:"name" validate:"required"`
