@@ -2,13 +2,13 @@ package main
 
 import "time"
 
-// Ward is a representation of wards table
+// Ward is a representation of wards table ERROR
 type Ward struct {
-	ID 				uint 		`json:"id" gorm:"primaryKey"`
-	Name 			string	`json:"name" validate:"required"`
-	BelongsTo string	`json:"belongs_to"`
+	ID        uint   `json:"id" gorm:"primaryKey"`
+	Name      string `json:"name" validate:"required"`
+	BelongsTo string `json:"belongs_to"`
 
-	IsPark 		bool 		`json:"is_park" gorm:"default:false"`
+	IsPark bool `json:"is_park" gorm:"default:false"`
 
 	// // Relations
 	// Users 		[]User	`json:"users" gorm:"constraint:OnDelete:SET NULL;"`

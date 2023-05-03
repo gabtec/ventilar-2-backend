@@ -16,24 +16,31 @@ var DbInstance *gorm.DB
 func DatabaseConnect() {
 	l := log.New(os.Stderr).WithColor()
 	l.Info("Connecting to database...")
-	
-	dsn := "host=" + os.Getenv("DB_HOST") + " user=" + os.Getenv("DB_USER") + " password=" + os.Getenv("DB_SECRET") + " port=" + os.Getenv("DB_PORT") + " dbname=" + os.Getenv("DB_NAME")
+
+	dsn := 	"host=" + os.Getenv("DB_HOST") + 
+					" user=" + os.Getenv("DB_USER") + 
+					" password=" + os.Getenv("DB_SECRET") + 
+					" port=" + os.Getenv("DB_PORT") + 
+					" dbname=" + os.Getenv("DB_NAME")
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		if strings.Contains(err.Error(), "3D000") {
-			
+
 			// log.Panic("You must create a database first")
 			l.Fatal("You must create a database first")
 		}
 		// DB exists, but something went wrong
 		l.Fatal("Error connecting to database! ")
 	}
-	
 
 	// atention to the order of the relations: 1st Ward, 2nd User
-	db.AutoMigrate(&Ward{})
+	err = db.AutoMigrate(&Ward{}, &User{})
+
+	if err != nil {
+		l.Fatal("Database automigration of models, failed.")
+	}
 
 	// OK
 	l.Info("Connected to Postgres Database: \"" + os.Getenv("DB_NAME") + "\"")

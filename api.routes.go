@@ -6,7 +6,6 @@ import (
 
 // SetupRoutes is a function that exports all API route endpoints
 func SetupRoutes(app *fiber.App) {
-
 	api := app.Group("/api")
 
 	// healthCheck
@@ -20,7 +19,7 @@ func SetupRoutes(app *fiber.App) {
 	// api.Get("/users", middleware.Protected(), controllers.GetUsers)
 	// api.Get("/users/:id", middleware.Protected(), controllers.GetUserByID)
 	// api.Patch("/users/:id", middleware.Protected(), controllers.UpdateUserPassword)
-	
+
 	// wards
 	api.Get("/wards", GetWardsHandler)
 	// api.Post("/wards", middleware.Protected(), controllers.CreateWard)

@@ -7,7 +7,6 @@ import (
 
 // SetupFiber - will initiate a GoFiber API
 func SetupFiber() *fiber.App {
-
 	app := fiber.New(fiber.Config{
 		AppName: "VentilAR REST API v0.0.1",
 		// EnablePrintRoutes: true, // lists all defined routes (sos)

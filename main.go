@@ -13,14 +13,14 @@ import (
 *    			MAIN block
 * ============================
  */
-func main(){
+func main() {
 	l := log.New(os.Stderr).WithColor()
 	err := godotenv.Load()
 
-  if err != nil {
-    l.Fatal("Error loading .env file")
-  }
-	
+	if err != nil {
+		l.Fatal("Error loading .env file")
+	}
+
 	PORT := ":" + os.Getenv("API_PORT")
 
 	DatabaseConnect()

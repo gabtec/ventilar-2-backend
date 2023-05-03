@@ -12,8 +12,8 @@ func GetWardsHandler(c *fiber.Ctx) error {
 	wards := []Ward{}
 
 	err := DbInstance.Model(&Ward{}).Preload("Users").Find(&wards).Error
-	
-  if err != nil {
+
+	if err != nil {
 		log.Fatal(err.Error())
 		return c.Status(400).JSON(fiber.Map{"status": "error", "message": "Invalid resource data.", "error": err.Error()})
 	}

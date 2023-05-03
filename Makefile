@@ -26,12 +26,14 @@ test_cov:
 
 dep:
 	go get github.com/githubnemo/CompileDaemon
-	go get github.com/golangci/golangci-lint
 	go get github.com/joho/godotenv
 	go get github.com/gofiber/fiber/v2
 	go get gorm.io/gorm
 	go get gorm.io/driver/postgres
 	go get github.com/withmandala/go-log
+	go get github.com/golangci/golangci-lint@v1.52.2
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin 
+	go get github.com/automation-co/husky@0.2.16
 
 
 install:
