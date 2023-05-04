@@ -35,7 +35,7 @@ jobs:
           echo "DB_DRIVER=postgres" >> .env
           echo "DB_HOST=localhost" >> .env
           echo "DB_NAME=test_db" >> .env
-          echo "DB_PORT=5434" >> .env
+          echo "DB_PORT=5432" >> .env
           echo "DB_USER=test" >> .env
           echo "DB_SECRET=pass" >> .env
       - name: Starts Api Server" >> .env
