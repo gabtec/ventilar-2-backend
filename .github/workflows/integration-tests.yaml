@@ -10,7 +10,8 @@ jobs:
       postgres:
         image: postgres:15.1-alpine
         env:
-          POSTGRES_DB: test
+          POSTGRES_DB: test_db
+          POSTGRES_USER: test
           POSTGRES_PASSWORD: pass
         ports:
           - 5432:5432
@@ -27,8 +28,17 @@ jobs:
           curl -sSf https://atlasgo.sh | sh
       - name: Run migratrions
         run: |
-          atlas migrate apply --dir file://database/migrations/ -u 'postgres://postgres:pass@localhost:5432/test?sslmode=disable'
-      - name: Starts Api Server
+          atlas migrate apply --dir file://database/migrations/ -u 'postgres://test:pass@localhost:5432/test_db?sslmode=disable'
+      - name: Make a test env file
+        run: |
+          echo "API_PORT=4000" > .env
+          echo "DB_DRIVER=postgres" >> .env
+          echo "DB_HOST=localhost" >> .env
+          echo "DB_NAME=test_db" >> .env
+          echo "DB_PORT=5434" >> .env
+          echo "DB_USER=test" >> .env
+          echo "DB_SECRET=pass" >> .env
+      - name: Starts Api Server" >> .env
         run: |
           make run
       - name: Run tests
