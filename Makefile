@@ -49,6 +49,9 @@ lint:
 lint-fix:
 	golangci-lint run --enable-all --fix
 
+ctimage:
+	docker build -t auto-api:v0.2 .
+	
 clean:
 	go clean
 	rm -Rf ./${BUILD_FOLDER} ./coverage
