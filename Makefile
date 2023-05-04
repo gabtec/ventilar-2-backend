@@ -34,6 +34,7 @@ dep:
 	go get github.com/golangci/golangci-lint@v1.52.2
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin 
 	go get github.com/automation-co/husky@0.2.16
+	go get github.com/stretchr/testify
 
 
 install:

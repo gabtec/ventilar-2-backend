@@ -1,10 +1,10 @@
-package main
+package types
 
 import "time"
 
 // Ward is a representation of wards table ERROR.
 type Ward struct {
-	ID        uint   `json:"id" gorm:"primaryKey"`
+	ID        uint   `json:"ward_id" gorm:"primaryKey"`
 	Name      string `json:"name" validate:"required"`
 	BelongsTo string `json:"belongs_to"`
 

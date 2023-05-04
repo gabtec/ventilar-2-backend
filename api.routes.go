@@ -22,6 +22,6 @@ func SetupRoutes(app *fiber.App) {
 
 	// wards
 	api.Get("/wards", GetWardsHandler)
-	// api.Post("/wards", middleware.Protected(), controllers.CreateWard)
+	api.Post("/wards", PostWardHandler)
 	// api.Get("/wards/:id", middleware.Protected(), controllers.GetWardByID)
 }

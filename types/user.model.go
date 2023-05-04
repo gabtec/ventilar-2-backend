@@ -1,4 +1,4 @@
-package main
+package types
 
 import "time"
 
@@ -10,7 +10,7 @@ type User struct {
 	Mec          uint   `json:"mec"     gorm:"unique"`
 	PasswordHash string `json:"password_hash"`
 	// Relation with t_wards
-	WardID uint `json:"ward_id"`
+	// WardID uint `json:"ward_id"`
 	// This is needed for reverse relation query
 	// Ward					Ward		`json:"ward"`
 

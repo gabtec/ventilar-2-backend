@@ -1,7 +1,35 @@
 #!/bin/sh
 
+# the script assumes it is called from project root folder (the git root folder)
+
 echo "Formatting code..."
 
 go fmt .
 
+echo "Code formated."
+
+echo "Checking database migrations status..."
+
+db_url=$(cat .env | grep DB_STRING | cut -d "\"" -f 2)
+# db_url="postgres://admin:admin@localhost:5432/test?sslmode=disable"
+
+MIG_STATUS=$(atlas migrate status -u ${db_url} --dir file://${PWD}/automations/atlas/migrations | grep "Migration Status" | cut -d ":" -f 2)
+# atlas migrate status -u  --dir file://${PWD}/automations/atlas/migrations | grep "Migration Status" | cut -d ":" -f 2 
+echo $MIG_STATUS
+
+if [ $MIG_STATUS !=  "OK" ]; then
+  echo "Database migrations NOT up to date."
+  echo "Do you wish to continue commiting (y/n)?"
+  read ANSWER
+
+  if [[ $ANSWER == "y" || $ANSWER == "Y" ]]; then
+    echo "Proceeding with commit." 
+    exit 0
+  else
+    echo "Cancelling commit." 
+    exit 1
+  fi
+fi
+
 echo "Done. Proceed with commit"
+exit 0

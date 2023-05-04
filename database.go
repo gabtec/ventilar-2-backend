@@ -4,6 +4,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/gabtec/ventilar-2-backend/types"
 	"github.com/withmandala/go-log"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -34,7 +35,7 @@ func DatabaseConnect() {
 	}
 
 	// atention to the order of the relations: 1st Ward, 2nd User
-	err = db.AutoMigrate(&Ward{}, &User{})
+	err = db.AutoMigrate(&types.Ward{}, &types.User{})
 
 	if err != nil {
 		l.Fatal("Database automigration of models, failed.")
