@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ventilar-db
+  labels:
+    app: ventilar-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ventilar-db
+  template:
+    metadata:
+      labels:
+        app: ventilar-db
+    spec:
+      containers:
+        - name: ventilar-db
+          image: postgres:15.1-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: ventilar-secret #name of the secret kind
+                  key: DB_USER #name of var in secret file
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: ventilar-secret
+                  key: DB_NAME
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ventilar-secret
+                  key: DB_PASSW
+          volumeMounts:
+            - name: local-volume
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: local-volume
+          hostPath:
+            path: /volumes/db/data
+            type: DirectoryOrCreate

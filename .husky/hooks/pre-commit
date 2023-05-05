@@ -10,7 +10,7 @@ echo "Code formated."
 
 echo "Checking database migrations status..."
 
-db_url=$(cat .env | grep DB_STRING | cut -d "\"" -f 2)
+db_url=$(cat .env | grep DB_URL | cut -d "\"" -f 2)
 # db_url="postgres://admin:admin@localhost:5432/test?sslmode=disable"
 
 MIG_STATUS=$(atlas migrate status -u ${db_url} --dir file://${PWD}/automations/atlas/migrations | grep "Migration Status" | cut -d ":" -f 2)

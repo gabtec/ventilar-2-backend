@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ventilar-api
+  labels:
+    app: ventilar-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ventilar-api
+  template:
+    metadata:
+      labels:
+        app: ventilar-api
+    spec:
+      volumes:
+        - name: vault
+          secret:
+            secretName: ventilar-secret
+            items:
+              - key: 'atlas.hcl'
+                path: 'atlas.hcl'
+      initContainers:
+        - name: migrations-before-api-up
+          image: gabtec/v-api-migrations:v0.1
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: vault
+              mountPath: '/etc/vault'
+          args:
+            [
+              'migrate',
+              'apply',
+              '-c',
+              'file:///etc/vault/atlas.hcl',
+              '--env',
+              'k8s',
+            ]
+      containers:
+        - name: ventilar-api
+          image: gabtec/v-api:v0.4
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
+          env:
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: ventilar-secret
+                  key: DB_URL

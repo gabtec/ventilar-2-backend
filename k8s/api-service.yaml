@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ventilar-api-svc
+spec:
+  type: ClusterIP
+  selector: # que Pods o service vai buscar
+    app: ventilar-api
+  ports:
+    - protocol: TCP
+      port: 4000 # this I can choose any, but usually the same value is selected
+      targetPort: 4000 # this must be the deployment port to reference

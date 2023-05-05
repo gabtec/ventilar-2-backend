@@ -4,7 +4,7 @@ echo "[ INFO:] Creating database folder structure..."
 
 mkdir -p ./database/{migrations,seeds}
 
-DB_URL=$(cat ./.env | grep DB_STRING | cut -d "\"" -f 2)
+DB_URL=$(cat ./.env | grep DB_URL | cut -d "\"" -f 2)
 
 # if .env not found exit
 if [ ! -e ".env" ]; then

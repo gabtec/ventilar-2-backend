@@ -13,6 +13,9 @@ build:
 run: build
 	./${BUILD_FOLDER}/${BINARY_NAME}
 
+runinci: build
+	./${BUILD_FOLDER}/${BINARY_NAME} &
+
 dev:
 	~/go/bin/CompileDaemon -build="go build -o ${BUILD_FOLDER}/${BINARY_NAME}" -command="./${BUILD_FOLDER}/${BINARY_NAME}"
 
@@ -50,8 +53,9 @@ lint:
 lint-fix:
 	golangci-lint run --enable-all --fix
 
-ctimage:
-	docker build -t auto-api:v0.2 .
+ctimages:
+	docker build -t gabtec/v-api:v0.1 .
+	docker build -t gabtec/v-api-migrations:v0.1 -f database-ci/Dockerfile .
 	
 clean:
 	go clean
