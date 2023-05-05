@@ -1,3 +1,9 @@
 .env
 
+.DS_Store
+
 build
+
+k8s/atlas.hcl
+
+unused

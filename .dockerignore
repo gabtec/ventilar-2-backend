@@ -1,0 +1,16 @@
+.env
+.DS_Store
+.github
+
+.husky
+
+automations
+
+build
+
+database/
+database-ci/
+
+k8s
+
+init-*.sh
